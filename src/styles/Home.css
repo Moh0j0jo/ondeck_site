@@ -1,0 +1,48 @@
+@import '../styles/_variables.css';
+
+section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 0 20px;
+}
+
+aside {
+  display: none;
+}
+
+section :where(h1){
+  width: 80%;;
+  font-size: 35px;
+  font-weight: 800;
+  font-family: var( --font-basic);
+}
+
+section :where(p){
+  font-size: 15px;
+  font-weight: 400;
+  font-family: var( --font-basic);
+  color: var(--font-color-basic)
+}
+
+.test {
+  width: 125px;
+  height: 50px;
+  border-radius: 3px;
+  text-align: center;
+  font-family: var(--font-basic-arial);
+  color: var(--drop-down-bg-color);
+  background-color: var(--button-active-color);
+}
+
+section > h1 :where(span){
+  color: var(--font-color-highlight)
+}
+
+.rating > span {
+  display: flex;
+  width: 100px;
+  flex-direction: row;
+  gap: 20px;
+
+}

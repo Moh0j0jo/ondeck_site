@@ -1,10 +1,24 @@
 @import '../styles/_variables.css';
 
-section {
+
+.homewrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: var(--main-bg-color);
+}
+
+.upper, .lower {
   width: 100%;
   display: flex;
   flex-direction: column;
-  padding: 0 20px;
+  padding: 20px 20px;
+  gap: 40px;
+
+}
+
+.lower {
+  margin-top: 90px;
 }
 
 aside {
@@ -12,17 +26,18 @@ aside {
 }
 
 section :where(h1){
-  width: 80%;;
+  width: 90%;
   font-size: 35px;
-  font-weight: 800;
+  font-weight: 700;
   font-family: var( --font-basic);
 }
 
-section :where(p){
-  font-size: 15px;
+section :Where(p) {
+  font-size: 16px;
   font-weight: 400;
   font-family: var( --font-basic);
-  color: var(--font-color-basic)
+  color: var(--font-color-basic);
+  line-height: 1.5em;
 }
 
 .test {
@@ -39,10 +54,38 @@ section > h1 :where(span){
   color: var(--font-color-highlight)
 }
 
+.rating {
+  display: flex;
+  gap: 20px;
+}
+
 .rating > span {
   display: flex;
-  width: 100px;
   flex-direction: row;
-  gap: 20px;
+  gap: 10px;
 
 }
+
+.lower {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+  gap: 20px;
+}
+
+
+
+.lower :where(.logos){
+  display: grid;
+  grid-template-columns: minmax(100px, 45%)repeat(auto-fill, minmax(100px, 45%));
+  gap: 20px;
+}
+
+.lower > .logos > svg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+

@@ -1,6 +1,6 @@
 import '../styles/Navbar.css'
 import Button from './Button';
-
+import SvgComponent from './svgComponent';
 
 const Navbar = () => {
  
@@ -8,7 +8,13 @@ const Navbar = () => {
 
   return ( 
     <div className="navbar">
-      <div className="logo"></div>
+      <div className="logo">
+      <SvgComponent 
+              width={100} 
+              height={40} 
+              url={process.env.PUBLIC_URL + 'Logo.svg'}
+      />
+      </div>
       <div className="burgermenu"></div>
       <div className="nav-menu">
         <div className="products">Products

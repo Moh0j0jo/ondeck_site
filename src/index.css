@@ -1,2 +1,6 @@
 @import '/src/styles/reset.css';
 
+#root {
+  display: flex;
+  justify-content: center;
+}

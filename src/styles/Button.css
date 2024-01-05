@@ -1,10 +1,13 @@
 
 button {
-  width: 125px;
-  height: 50px;
-  border-radius: 3px;
+  width: 150px;
+  height: 60px;
+  border-radius: 5px;
   text-align: center;
-  font-family: var(--font-basic-arial);
+  font-size: 19px !important; 
+  font-weight: 500;
+  font-family: var(--font-basic);
   color: var(--drop-down-bg-color);
   background-color: var(--button-active-color);
+  position: relative;
 }

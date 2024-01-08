@@ -6,35 +6,37 @@ import SvgComponent from './svgComponent';
 const Home = () => {
 
 
+  
   return ( 
     <div className="home-wrapper">
       <section className="upper">
         <h1>Ondeck is your remote  <span>conference calling tool</span></h1>
         <p>Ondeck is a service that allows your to create a beatiful online, and encrypted video calls for you and your remote team.</p>
-        <Button text="Try for free" isVisibleOnMobile={true} />
-        <div className="reviews-wrapper">
-        <p className='rating'>5.0 Rating based on reviews from: 
-          <span>
-            <SvgComponent 
-              width={24} 
-              height={24} 
-              url={process.env.PUBLIC_URL + 'Capterra Logo.svg'}
-            />
-            <SvgComponent 
-              width={24} 
-              height={24} 
-              url={process.env.PUBLIC_URL + 'AlternativeTo Logo.svg'}
-            />
-            <SvgComponent 
-              width={24} 
-              height={24} 
-              url={process.env.PUBLIC_URL + 'shopify.svg'}
-            />
-          </span>
-        </p>
-        </div>
-
       </section>
+      <div className="rating-container">
+      <Button text="Try for free" isVisibleOnMobile={true} />
+      <div className="reviews-wrapper">
+      <p className='rating'>5.0 Rating based on reviews from: 
+        <span>
+          <SvgComponent 
+            width={24} 
+            height={24} 
+            url={process.env.PUBLIC_URL + 'Capterra Logo.svg'}
+          />
+          <SvgComponent 
+            width={24} 
+            height={24} 
+            url={process.env.PUBLIC_URL + 'AlternativeTo Logo.svg'}
+          />
+          <SvgComponent 
+            width={24} 
+            height={24} 
+            url={process.env.PUBLIC_URL + 'shopify.svg'}
+          />
+        </span>
+      </p>
+      </div>
+    </div>
       <aside>
         <img src="public/Hero Image.png" alt="xxx" />
       </aside>

@@ -1,24 +1,30 @@
 @import '../styles/_variables.css';
 
 
-.homewrapper {
+.home-wrapper {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  background-color: var(--main-bg-color);
+  justify-content: space-evenly;
+}
+
+.rating-container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 0 20px;
 }
 
 .upper, .lower {
   width: 100%;
   display: flex;
   flex-direction: column;
-  padding: 20px 20px;
-  gap: 40px;
-
+  padding: 0 20px;
 }
 
 .lower {
-  margin-top: 90px;
+  position: absolute;
+  bottom: 100px;
+  left: 0;
 }
 
 aside {
@@ -32,7 +38,7 @@ section :where(h1){
   font-family: var( --font-basic);
 }
 
-section :Where(p) {
+p {
   font-size: 16px;
   font-weight: 400;
   font-family: var( --font-basic);
@@ -63,7 +69,6 @@ section > h1 :where(span){
   display: flex;
   flex-direction: row;
   gap: 10px;
-
 }
 
 .lower {
@@ -89,3 +94,39 @@ section > h1 :where(span){
 
 }
 
+@media (max-width: 30em)
+{
+  .lower :where(svg){
+    width: calc(100vw * 0.38);
+  }
+
+}
+
+@media (max-width: 25em)
+{
+  .upper, .lower {
+    gap: 20px;
+  }
+
+  section :where(h1){
+    width: 80%;
+    font-size: 25px;
+  }
+
+  .rating > span {
+    gap: 5px;
+  }
+  
+  p { 
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  button {
+    width: 120px;
+    height: 45px;
+    font-size: 14px !important; 
+    font-weight: 500;
+    margin: 10px;
+  }
+}

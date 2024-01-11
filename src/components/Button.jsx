@@ -1,9 +1,9 @@
 import '../styles/Button.css'
 
-const Button = ({ text, isVisibleOnMobile }) => {
+const Button = ({ text, isVisible }) => {
   return (
     <>
-      {isVisibleOnMobile && <button>{text}</button>}
+      {isVisible && <button>{text}</button>}
     </>
 
     

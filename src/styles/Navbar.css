@@ -15,7 +15,7 @@
   width: 150px;
 }
 
-.navbar :where(button)::before{
+.navbar > .signInBtn::before{
   content: 'Sign in';
   color: var(--font-color-basic);
   font-size: 16px;
@@ -23,6 +23,10 @@
   top: 50%;
   left:-35%;
   transform: translate(-35%, -50%);
+}
+
+.closeBtn {
+  display: none;
 }
 
 .product-dropdown {
@@ -41,9 +45,10 @@
 }
 
 
-
 @media (max-width: 30em)
 {
+  .navbar > .nav-menu { display: none}
+  .signInBtn { display: none}
 
   .navbar {
     height: 80px;
@@ -78,7 +83,6 @@
     z-index: 1000;
   }
 
-  .navbar > .nav-menu { display: none}
 
   .nav-menu-item {
     display: flex;
@@ -99,8 +103,8 @@
     background-color: var(--drop-down-bg-color);
   }
 
-  .navbar > .nav-menu::after {
-    content: '';
+  .closeBtn {
+    display: flex;
     width: 50px;
     height: 50px; 
     background: url('/public/Close.svg') center/contain no-repeat; 

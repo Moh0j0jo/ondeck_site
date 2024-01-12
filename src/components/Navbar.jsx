@@ -1,12 +1,26 @@
 import { useState } from 'react';
 import '../styles/Navbar.css'
-import Button from './Button';
 import SvgComponent from './svgComponent';
+
 
 const Navbar = () => {
   
-  const isMobile = window.innerWidth <= 700;
-  // const [isActive, setIsActive] = useState(false)
+  const [isActivedrpd, setDropDownisActive] = useState(false);
+  const [isActive, setIsActive] = useState(true);
+
+  let dropdownClick = (e) =>{
+    const elementName = e.currentTarget.id
+    console.log(e.currentTarget.id)
+    if (elementName === 'd0') {
+      setDropDownisActive(!isActivedrpd);
+    }
+  }
+
+  let menubtnClick = (e) =>{
+
+      setIsActive(!isActive);
+
+  }
 
   const navmenuItems = [
     {
@@ -49,43 +63,52 @@ const Navbar = () => {
   const Navmenu = () => {
 
     return (
-      <div className="nav-menu active">
-        {navmenuItems.map((navItem, index) => {
+      <div className={isActive ? "nav-menu" : "nav-menu active"}>
+        {
+          navmenuItems.map((navItem, index) => {
 
-          return (
-            <div className="nav-menu-item" key={index}>
-              {navItem.label}
-              {navItem.dropdownlist.length > 0 && (
-                <div className='product-dropdown active'>
-                  {navItem.dropdownlist.map((dropdownItem, index) => {
+            return (
+              <div className="nav-menu-item" 
+                key={index} 
+                id={'d'+index}
+                onClick={dropdownClick}
+              >
+                {navItem.label}
+                {navItem.dropdownlist.length > 0 && (
+                  <div className={isActivedrpd ? 'product-dropdown active':'product-dropdown'}>
+                    {navItem.dropdownlist.map((dropdownItem, index) => {
 
-                    return (
-                      <div className="product-dropdown-item" key={index}>
-                        <div className="product-item-header">
-                          <SvgComponent
-                            width={20}
-                            height={20}
-                            url={process.env.PUBLIC_URL + dropdownItem.logo}
-                          />
-                          <a
-                            href="http://"
-                            target="_blank"
-                            rel="noopener noreferrer">
-                            {dropdownItem.title}
-                          </a>
+                      return (
+                        <div className="product-dropdown-item" key={index}>
+                          <div className="product-item-header">
+                            <SvgComponent
+                              width={20}
+                              height={20}
+                              url={process.env.PUBLIC_URL + dropdownItem.logo}
+                            />
+                            <a
+                              href="http://"
+                              target="_blank"
+                              rel="noopener noreferrer">
+                              {dropdownItem.title}
+                            </a>
+                          </div>
+                          <p>{dropdownItem.text}</p>
                         </div>
-                        <p>{dropdownItem.text}</p>
-                      </div>
-                    )
+                      )
 
-                  })}
-                </div>
-              )}
-            </div>
-          )
-
-        })
+                    })}
+                  </div>
+                )}
+              </div>
+            )
+          })
         }
+      <button
+        className='closeBtn'
+        onClick={menubtnClick}
+      >
+      </button>
       </div>
 
     )
@@ -101,13 +124,9 @@ const Navbar = () => {
           url={process.env.PUBLIC_URL + 'Logo.svg'}
         />
       </div>
-      <div className="burgermenu"></div>
+      <div className="burgermenu" onClick={menubtnClick}></div>
       <Navmenu />
-      {
-        isMobile ?
-        <Button text="Try For free" isVisible={false} /> :
-        <Button text="Try For free" isVisibleOnMobile={true} />
-      }
+      <button className='signInBtn'>Try for Free</button>
     </div>
   );
 };

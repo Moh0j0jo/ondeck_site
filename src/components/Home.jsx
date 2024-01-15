@@ -1,5 +1,4 @@
 import '../styles/Home.css'
-import Button from './Button';
 import SvgComponent from './svgComponent';
 
 
@@ -15,7 +14,7 @@ const Home = () => {
         <h1>Ondeck is your remote  <span>conference calling tool</span></h1>
         <p>Ondeck is a service that allows your to create a beatiful online, and encrypted video calls for you and your remote team.</p>
         <div className="rating-container">
-      <Button text="Try for free" isVisibleOnMobile={true} />
+      <button className='siginbtn'>Try for Free</button>
       <div className="reviews-wrapper">
       <p className='rating'>5.0 Rating based on reviews from: 
         <span>

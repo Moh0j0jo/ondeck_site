@@ -7,12 +7,13 @@ const Navbar = () => {
   
   const [isActivedrpd, setDropDownisActive] = useState(false);
   const [isActive, setIsActive] = useState(true);
+  const [isHovered, setHovered] = useState(false);
 
   let dropdownClick = (e) =>{
     const elementName = e.currentTarget.id
-    console.log(e.currentTarget.id)
+
     if (elementName === 'd0') {
-      setDropDownisActive(!isActivedrpd);
+      setDropDownisActive(!isActivedrpd)
     }
   }
 
@@ -21,6 +22,26 @@ const Navbar = () => {
       setIsActive(!isActive);
 
   }
+
+  const mouseEnter = (e) => {
+    const elementName = e.currentTarget.id
+    const isWebView =  window.innerWidth > 600
+    if(isWebView) {    
+      if (elementName === 'd0') {
+        setHovered(true);
+      }
+    }
+
+  };
+
+
+  const mouseLeave = () => {
+
+        setHovered(false);
+
+
+
+  };
 
   const navmenuItems = [
     {
@@ -72,10 +93,18 @@ const Navbar = () => {
                 key={index} 
                 id={'d'+index}
                 onClick={dropdownClick}
+                onMouseEnter={mouseEnter} 
+               
+               
               >
                 {navItem.label}
                 {navItem.dropdownlist.length > 0 && (
-                  <div className={isActivedrpd ? 'product-dropdown active':'product-dropdown'}>
+                  <div className={
+                    isActivedrpd || isHovered ? 'product-dropdown active':'product-dropdown'
+                    }
+                  onMouseEnter={mouseEnter} 
+                  onMouseLeave={mouseLeave}
+                  >
                     {navItem.dropdownlist.map((dropdownItem, index) => {
 
                       return (

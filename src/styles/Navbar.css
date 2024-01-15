@@ -35,7 +35,7 @@
   width: 600px;
   flex-direction: row;
   align-items: center;
-  gap: 50px;
+  gap: 55px;
   font-weight: 500;
   font-family: var(--font-basic);
   color: var( --font-color-basic);
@@ -142,7 +142,6 @@
 .navbar .nav-menu-item:hover {
   display: flex;
   cursor: pointer;
-  border: 1px solid red;
 } 
 
 .product-dropdown.active {

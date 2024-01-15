@@ -31,15 +31,15 @@ const Navbar = () => {
         setHovered(true);
       }
     }
-
   };
 
 
-  const mouseLeave = () => {
-
-        setHovered(false);
-
-
+  const mouseLeave = (e) => {
+    const elementName = e.currentTarget.id
+    if (elementName !== 'd0') {
+      setHovered(false);
+    }
+    console.log(elementName)
 
   };
 
@@ -94,7 +94,7 @@ const Navbar = () => {
                 id={'d'+index}
                 onClick={dropdownClick}
                 onMouseEnter={mouseEnter} 
-               
+                onMouseLeave={mouseLeave}
                
               >
                 {navItem.label}

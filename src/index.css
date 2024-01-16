@@ -8,13 +8,14 @@
 
 
 button {
-  width: 150px;
-  height: 60px;
+  width: 130px;
+  min-width: 100px;
+  height: 50px;
   border-radius: 5px;
   text-align: center;
-  font-size: 19px !important; 
   font-weight: 500;
   font-family: var(--font-basic);
+  font-size: minmax(12px, 18px);
   color: var(--drop-down-bg-color);
   background-color: var(--button-active-color);
   position: relative;

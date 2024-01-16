@@ -99,6 +99,7 @@ h1 :where(span){
     width: calc(100vw * 0.38);
   }
 
+
 }
 
 @media (max-width: 25em)
@@ -121,13 +122,6 @@ h1 :where(span){
     font-weight: 500;
   }
 
-  button {
-    width: 120px;
-    height: 45px;
-    font-size: 14px !important; 
-    font-weight: 500;
-    margin: 10px;
-  }
 }
 
 @media (min-width: 35em)
@@ -162,13 +156,6 @@ h1 :where(span){
 
   p {
     font-size: 18px;
-  }
-
-  button {
-    width: 180px;
-    height: 60px;
-    font-size: 18px !important; 
-    font-weight: 500;
   }
 
   .lower {

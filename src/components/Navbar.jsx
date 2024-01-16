@@ -1,48 +1,14 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import '../styles/Navbar.css'
 import SvgComponent from './svgComponent';
+import DropDownCompItemList from './DropdownItems';
 
 
 const Navbar = () => {
-  
+
   const [isActivedrpd, setDropDownisActive] = useState(false);
   const [isActive, setIsActive] = useState(true);
-  const [isHovered, setHovered] = useState(false);
-
-  let dropdownClick = (e) =>{
-    const elementName = e.currentTarget.id
-
-    if (elementName === 'd0') {
-      setDropDownisActive(!isActivedrpd)
-    }
-  }
-
-  let menubtnClick = (e) =>{
-
-      setIsActive(!isActive);
-
-  }
-
-  const mouseEnter = (e) => {
-    const elementName = e.currentTarget.id
-    const isWebView =  window.innerWidth > 600
-    if(isWebView) {    
-      if (elementName === 'd0') {
-        setHovered(true);
-      }
-    }
-  };
-
-
-  const mouseLeave = (e) => {
-    const elementName = e.currentTarget.id
-    if (elementName !== 'd0') {
-      setHovered(false);
-    }
-    console.log(elementName)
-
-  };
-
+  
   const navmenuItems = [
     {
       label: "Products",
@@ -81,68 +47,89 @@ const Navbar = () => {
     }
   ]
 
-  const Navmenu = () => {
+  useEffect(() => {
+    const handleMouseEnter = () => {
+      setDropDownisActive(true);
+    };
 
+    const handleMouseLeave = () => {
+      setDropDownisActive(false);
+    };
+
+    // Attach event listeners when the component mounts
+    const dropdownTrigger = document.getElementById('d0');
+    dropdownTrigger.addEventListener('mouseenter', handleMouseEnter);
+    dropdownTrigger.addEventListener('mouseleave', handleMouseLeave);
+
+    // Cleanup: Remove event listeners when the component unmounts
+    // return () => {
+    //   dropdownTrigger.removeEventListener('mouseenter', handleMouseEnter);
+    //   dropdownTrigger.removeEventListener('mouseleave', handleMouseLeave);
+    // };
+  }, [isActivedrpd]);
+
+
+  let dropdownClick = (e) => {
+    const elementName = e.currentTarget.id
+
+    if (elementName === 'd0') {
+      setDropDownisActive(!isActivedrpd)
+    }
+
+  }
+
+  let menubtnClick = (e) => {
+
+    setIsActive(!isActive);
+
+  }
+
+  const NavMenuItem = ({ navmenuItems }) => {
+
+    let itemClassname = isActivedrpd ? 'product-dropdown active' : 'product-dropdown'
+    
+    return (
+
+      navmenuItems.map((navItem, index) => {
+
+        return (
+          <div className="nav-menu-item"
+            key={index}
+            id={'d' + index}
+            onClick={dropdownClick}
+          >
+            <h4>{navItem.label}</h4>
+           
+           
+              {(
+                navItem.dropdownlist.length > 0 &&
+                <DropDownCompItemList items={navItem.dropdownlist} className={itemClassname}
+                />
+              )}
+            
+
+
+          </div>
+        )
+
+      })
+    )
+  }
+
+  const Navmenu = () => {
     return (
       <div className={isActive ? "nav-menu" : "nav-menu active"}>
-        {
-          navmenuItems.map((navItem, index) => {
-
-            return (
-              <div className="nav-menu-item" 
-                key={index} 
-                id={'d'+index}
-                onClick={dropdownClick}
-                onMouseEnter={mouseEnter} 
-                onMouseLeave={mouseLeave}
-               
-              >
-                {navItem.label}
-                {navItem.dropdownlist.length > 0 && (
-                  <div className={
-                    isActivedrpd || isHovered ? 'product-dropdown active':'product-dropdown'
-                    }
-                  onMouseEnter={mouseEnter} 
-                  onMouseLeave={mouseLeave}
-                  >
-                    {navItem.dropdownlist.map((dropdownItem, index) => {
-
-                      return (
-                        <div className="product-dropdown-item" key={index}>
-                          <div className="product-item-header">
-                            <SvgComponent
-                              width={20}
-                              height={20}
-                              url={process.env.PUBLIC_URL + dropdownItem.logo}
-                            />
-                            <a
-                              href="http://"
-                              target="_blank"
-                              rel="noopener noreferrer">
-                              {dropdownItem.title}
-                            </a>
-                          </div>
-                          <p>{dropdownItem.text}</p>
-                        </div>
-                      )
-
-                    })}
-                  </div>
-                )}
-              </div>
-            )
-          })
-        }
-      <button
-        className='closeBtn'
-        onClick={menubtnClick}
-      >
-      </button>
+        <NavMenuItem navmenuItems={navmenuItems} />
+        <button
+          className='closeBtn'
+          onClick={menubtnClick}
+        >
+        </button>
       </div>
-
     )
-    
+
   }
+
 
   return (
     <div className="navbar">

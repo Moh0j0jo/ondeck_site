@@ -5,9 +5,9 @@
   height: 100px;
   display: flex;
   flex-direction: row;
-  gap: 100px;
   align-items: center;
-  padding: 20px 20px 20px 0;
+  justify-content: space-between;
+  padding: 0 20px;
   position: relative;
 }
 
@@ -18,10 +18,11 @@
 .navbar > .signInBtn::before{
   content: 'Sign in';
   color: var(--font-color-basic);
-  font-size: 16px;
+  font-size: 14px;
   position: absolute;
   top: 50%;
-  left:-35%;
+  left:-20%;
+  padding-right: 30px;
   transform: translate(-35%, -50%);
 }
 
@@ -30,12 +31,16 @@
 }
 
 
-.navbar .nav-menu {
+.navbar > .nav-menu {
   display: flex;
-  width: 600px;
+  flex-wrap:wrap-reverse;
+  flex-basis: 400px;
+  width: clamp(300px, 600px, 800px );
   flex-direction: row;
   align-items: center;
-  gap: 55px;
+  justify-content: space-between;
+  gap: 5px;
+  margin: 0px 100px;
   font-weight: 500;
   font-family: var(--font-basic);
   color: var( --font-color-basic);
@@ -46,21 +51,26 @@
   position: relative;
 }
 
-
-
 .product-dropdown {
   display: none;
 }
 
-@media (max-width: 30em)
-{
-  .navbar > .nav-menu { display: none}
-  .signInBtn { display: none}
+@media (max-width: 550px)
+{ 
+  .navbar > .nav-menu { 
+    display: none
+    
+  }
+
+  .signInBtn { 
+    display: none
+  }
 
   .navbar {
     height: 80px;
     justify-content: space-between;
     position: relative;
+    padding: 20px 20px 20px 0;
   }
 
   .burgermenu {
@@ -77,13 +87,13 @@
     align-items: center;
     justify-content: center;
     gap: 10px;
-    width: 100%;
+    width: 100dvw;
     height: 100dvh;
     background-color: var(--main-bg-color);   
     color: var(--font-color-dropdown-header);
     font-size: 19px;
     font-weight: 600;
-   
+    margin: 0;
     position: absolute;
     left: 0;
     top: 0;
@@ -129,7 +139,6 @@
 
   }
 
-
   .product-dropdown-item > p {
     font-size: 14px;
   }
@@ -137,12 +146,23 @@
 }
 
 
-@media (min-width: 31em){
+@media (min-width: 550px) and (max-width: 800px) {
+  .signInBtn{
+    font-size: 14px;
+  }
+}
+
+
+@media (min-width: 600px){
 
 .navbar .nav-menu-item:hover {
   display: flex;
   cursor: pointer;
 } 
+
+.signInBtn{
+  font-size: 16px;
+}
 
 .product-dropdown.active {
   display: block;
@@ -165,6 +185,7 @@
     align-items: center;
     gap: 5px;
   }
+
   .product-dropdown-item > p {
     font-size: 14px;
     padding-left: 20px;

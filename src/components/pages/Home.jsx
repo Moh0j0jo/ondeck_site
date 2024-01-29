@@ -1,12 +1,13 @@
-import '../styles/Home.css'
-import SvgComponent from './svgComponent';
-
+import SvgComponent from '../svgComponent';
+import Button from '../Button';
 
 const Home = () => {
-
-
   
   return ( 
+
+    // <div className='home'>
+    //   <h1>HOME</h1>
+    // </div>
     <div className="home-wrapper">
 
     <section className="upper">
@@ -14,7 +15,7 @@ const Home = () => {
         <h1>Ondeck is your remote  <span>conference calling tool</span></h1>
         <p>Ondeck is a service that allows your to create a beatiful online, and encrypted video calls for you and your remote team.</p>
         <div className="rating-container">
-      <button className='siginbtn'>Try for Free</button>
+        <Button/>
       <div className="reviews-wrapper">
       <p className='rating'>5.0 Rating based on reviews from: 
         <span>
@@ -38,10 +39,8 @@ const Home = () => {
       </div>
     </div>
       </div>
-      <div className="home-rapper-right">
-      <aside>
+      <div className="home-wrapper-right">
         <img src={process.env.PUBLIC_URL + 'Hero Image.png'} alt="xxx" />
-      </aside>
       </div>
     </section>
 

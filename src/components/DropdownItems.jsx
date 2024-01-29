@@ -1,14 +1,19 @@
 import SvgComponent from './svgComponent';
+import React, {useState} from 'react'
 
+export function DropDownCompItemList({ props }) {
 
-const DropDownCompItemList = ({ items, className}) => {
-
+  const [click, setClick] = useState(false);
+  const handleClick = () => setClick(!click);
 
   return ( 
-      <div className={className}>
-      {items.map((prop, index) => {
+    
+      <ul 
+        className={click ? 'dropdown-list clicked' : 'dropdown-list'}
+        onClick={handleClick}>
+      {props.map((prop, index) => {
         return (
-          <div className="product-dropdown-item" key={index}>
+          <div className={'product-dropdown-item'} key={index}>
             <div className="product-item-header">
               <SvgComponent
                 width={20}
@@ -27,8 +32,7 @@ const DropDownCompItemList = ({ items, className}) => {
         )
       })
       }
-    </div>
+    </ul>
    );
 }
  
-export default DropDownCompItemList;

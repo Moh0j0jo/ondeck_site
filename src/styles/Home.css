@@ -1,10 +1,14 @@
-@import '../styles/_variables.css';
 
+/* :root{ max-width: 1300px;} */
 
 .home-wrapper {
+  width: 100vw;
+  max-width: 1600px;
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  gap: 200px;
+  background-color: var(--main-bg-color);
 }
 
 .rating-container {
@@ -15,26 +19,17 @@
 
 .upper, .lower {
   width: 100%;
+  max-width: 1600px;
   display: flex;
   flex-direction: column;
-  padding: 0 20px;
 }
 
-.lower {
-  position: absolute;
-  bottom: 100px;
-  left: 0;
-}
-
-aside {
-  display: none;
-}
 
 section :where(h1){
-  width: 100%;
   font-size: 35px;
   font-weight: 700;
-  font-family: var( --font-basic);
+  font-family: var( --font-basic);  
+  color: var(--font-color-headline)
 }
 
 p {
@@ -45,15 +40,6 @@ p {
   line-height: 1.5em;
 }
 
-.test {
-  width: 125px;
-  height: 50px;
-  border-radius: 3px;
-  text-align: center;
-  font-family: var(--font-basic-arial);
-  color: var(--drop-down-bg-color);
-  background-color: var(--button-active-color);
-}
 
 h1 :where(span){
   color: var(--font-color-highlight)
@@ -93,69 +79,181 @@ h1 :where(span){
 
 }
 
-@media (max-width: 30em)
+@media (min-width: 300px) and (max-width: 600px)
 {
-  .lower :where(svg){
-    width: calc(100vw * 0.38);
+
+  .home-wrapper{
+    padding: 10px;
+    height: 80vh;
+    gap: 100px;
   }
 
-
-}
-
-@media (max-width: 25em)
-{
-  .upper, .lower {
-    gap: 20px;
-  }
-
-  section :where(h1){
-    width: 80%;
-    font-size: 25px;
-  }
-
-  .rating > span {
-    gap: 5px;
-  }
   
-  p { 
-    font-size: 14px;
-    font-weight: 500;
+  .upper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: auto;
+    padding: 10px;
+  }
+
+  .home-wrapper-left,
+  .home-wrapper-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .home-wrapper-left :where(h1){
+    font-size: 40px;
+  }
+
+  .home-wrapper-left :where(p){
+    font-size: 15px;
+  }
+
+  .home-wrapper-left :where(.btn){
+    display: flex;
+    padding: 20px 40px;
+  }
+
+  .rating-container {
+    width: 100%;
+
+  }
+
+  img {
+    display: none;
   }
 
 }
 
-@media (min-width: 35em)
+@media (min-width: 600px) and (max-width: 800px)
 {
 
-  .home-wrapper {
-    margin-top: 100px;
+  .home-wrapper{
+    align-items: center;
+    padding: 50px;
+    gap: 100px;
+    height: 90vh;
   }
-
+    
   .upper {
-    max-height: 50vh;
+    width: 100%;
+    display: grid;
     flex-direction: row;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    align-items: center;
   }
 
-  section :where(h1){
+  .home-wrapper-left :where(h1){
+    font-size: 40px;
+  }
+
+  .home-wrapper-left :where(p){
+    font-size: 15px;
+    width: 80%;
+  }
+
+  .rating-container {
+    width: 100%;
+  }
+ 
+
+  .home-wrapper-left{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+ }
+
+ .home-wrapper-right {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+ }
+
+  img {
+    min-width: 300px;
+    max-width: 600px;
+    aspect-ratio: 1/1;
+  }
+
+  .lower {
+    align-items: center;
+    gap: 30px;
+  }
+
+  .lower :where(.logos){
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 50px;
+  }
+
+  .lower :where(svg){
+    width: calc(100vw * 0.30);
+    height: 100px;
+  }
+
+}
+
+
+@media (min-width: 1000px)
+{
+
+  .home-wrapper{
+    align-items: center;
+    padding: 50px;
+    justify-content: space-between;
+    height: 90vh;
+  }
+    
+  .upper {
+    width: 100%;
+    display: grid;
+    flex-direction: row;
+    grid-template-columns: 70% 30%;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .home-wrapper-left :where(h1){
     font-size: 65px;
   }
 
-  aside{
-    display:flex;
-    height: 80%;
+  .home-wrapper-left :where(p){
+    font-size: 20px;
+    width: 80%;
   }
+
+  .rating-container {
+    width: 100%;
+  }
+ 
 
   .home-wrapper-left{
-    width: 70%;
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    padding-right: 40px;
-  }
+    align-items: flex-start;
+    gap: 50px;
+ }
 
-  p {
-    font-size: 18px;
+ .home-wrapper-right {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+ }
+
+  img {
+    min-width: 300px;
+    max-width: 600px;
+    aspect-ratio: 1/1;
   }
 
   .lower {
@@ -174,4 +272,3 @@ h1 :where(span){
   }
 
 }
-

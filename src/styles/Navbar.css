@@ -1,195 +1,197 @@
-@import '../styles/_variables.css';
+
 
 .navbar {
-  width: 100%;
-  height: 100px;
+  max-width: 1600px;
+  width: 100dvw;
+  height: 80px;
   display: flex;
-  flex-direction: row;
+  justify-content: center;
   align-items: center;
-  justify-content: space-between;
-  padding: 0 20px;
-  position: relative;
+  font-size: 1.2rem;
+  background-color: var(--main-bg-color);
+
 }
 
-.navbar > .logo > svg {
-  width: 150px;
-}
 
-.navbar > .signInBtn::before{
-  content: 'Sign in';
-  color: var(--font-color-basic);
-  font-size: 14px;
+.dropdown-list {
   position: absolute;
-  top: 50%;
-  left:-20%;
-  padding-right: 30px;
-  transform: translate(-35%, -50%);
-}
-
-.closeBtn {
-  display: none;
-}
-
-
-.navbar > .nav-menu {
-  display: flex;
-  flex-wrap:wrap-reverse;
-  flex-basis: 400px;
-  width: clamp(300px, 600px, 800px );
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  gap: 5px;
-  margin: 0px 100px;
-  font-weight: 500;
-  font-family: var(--font-basic);
-  color: var( --font-color-basic);
-}
-
-
-.navbar .nav-menu-item {
-  position: relative;
-}
-
-.product-dropdown {
-  display: none;
-}
-
-@media (max-width: 550px)
-{ 
-  .navbar > .nav-menu { 
-    display: none
-    
-  }
-
-  .signInBtn { 
-    display: none
-  }
-
-  .navbar {
-    height: 80px;
-    justify-content: space-between;
-    position: relative;
-    padding: 20px 20px 20px 0;
-  }
-
-  .burgermenu {
-    background-image: url("/public/Menu.svg");
-    background-size: cover;
-    background-position: center;
-    width: 30px;
-    height: 30px;
-  }
-
-  .navbar > .nav-menu.active{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    width: 100dvw;
-    height: 100dvh;
-    background-color: var(--main-bg-color);   
-    color: var(--font-color-dropdown-header);
-    font-size: 19px;
-    font-weight: 600;
-    margin: 0;
-    position: absolute;
-    left: 0;
-    top: 0;
-    z-index: 1000;
-  }
-
-
-  .nav-menu-item {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    gap: 10px;
-    width: 100%;
-    position: relative;
-  }
-
-  .product-dropdown.active {
-    display: flex;
-    flex-direction: column;
-    width: 90vw;
-    padding: 20px;
-    gap: 20px;
-    border-radius: 20px;
-    background-color: var(--drop-down-bg-color);
-  }
-
-  .closeBtn {
-    display: flex;
-    width: 50px;
-    height: 50px; 
-    background: url('/public/Close.svg') center/contain no-repeat; 
-    position: absolute;
-    top: 10%;
-    left: 50%;
-    transform: translate(-50%, -50%); 
-  }
-
-
-  .product-dropdown-item {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-
-  }
-
-  .product-dropdown-item > p {
-    font-size: 14px;
-  }
+  width: 500px;
+  top: 70px;
+  left: 0;
+  list-style: none;
+  text-align: start;
+  padding: 10px;
+  border-radius: 15px;
+  background-color: var(--drop-down-bg-color);
+  z-index: 99;
 
 }
 
-
-@media (min-width: 550px) and (max-width: 800px) {
-  .signInBtn{
-    font-size: 14px;
-  }
-}
-
-
-@media (min-width: 600px){
-
-.navbar .nav-menu-item:hover {
-  display: flex;
+.dropdown-list li {
+  background: #1B1919;
   cursor: pointer;
-} 
+}
 
-.signInBtn{
+.dropdown-list li:hover {
+  background: #5cabff;
+}
+
+.dropdown-list.clicked {
+  display: none;
+}
+
+.dropdown-link {
+  display: block;
+  height: 100%;
+  width: 100%;
+  text-decoration: none;
+  color: #fff;
+  padding: 16px;
+}
+
+.product-dropdown-item {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.product-item-header {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
   font-size: 16px;
 }
 
-.product-dropdown.active {
-  display: block;
-  flex-direction: column;
-  width: 400px;
-  padding: 20px;
-  gap: 30px;
-  border-radius: 20px;
-  background-color: #ffff;
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translate(-50%, 15%);
+.product-dropdown-item {
+  padding: 10px;
+
 }
-  
-  .product-item-header{
-    color: black;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 5px;
+
+.product-dropdown-item > p {
+  padding-left: 25px;
+  font-size: 14px;
+}
+
+
+
+
+@media (max-width: 1000px)
+{
+  .btn,
+  .navbar > a .btn::before {
+    display: none;
   }
 
-  .product-dropdown-item > p {
-    font-size: 14px;
-    padding-left: 20px;
+  .navbar {
+    justify-content: space-between;
+    padding: 0 20px;
   }
+
+  .menu-icon {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(-100%, 60%);
+    font-size: 1.8rem;
+    cursor: pointer;
+  }
+
+  .nav-items {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 50vh;
+    position: absolute;
+    top: 80px;
+    left: -100%;
+    opacity: 0;
+    border: 1px solid black;
+    border-radius: 25% 10%;
+    transition: all 0.5s ease;
+    font-size: 2rem;
+  }
+
+  .nav-items.active{
+    background: var(--drop-down-bg-color);
+    left: 0;
+    opacity: 1;
+    transition: all 0.5s ease;
+    z-index: 1;
+  }
+
+  .nav-link {
+    text-align: center;
+    padding: 1rem;
+    width: 100%;
+    display: table;
+    color: var(--font-color-headline);
+    font-weight: 600;
+  }
+
+  .nav-link:hover {
+    background-color: var(--drop-down-bg-color);
+    border-radius: 15px;
+  }
+
+ 
+ }
+
+
+@media (min-width: 1000px){
+
+  .navbar {
+    justify-content: space-between;
+    padding: 0 50px;
+  }
+
+  .menu-icon {
+    display: none;
+  }
+
+  .navbar > .nav-items {
+    display: grid;
+    width: 600px;
+    height: 100%;
+    align-items: center;
+    grid-template-columns: repeat(5, auto);
+    grid-gap: 40px;
+    list-style: none;
+    text-align: center;
+    justify-content: end;
+    position: relative;
+  }
+
+  .nav-item {
+    height: 80px;
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-item > a {
+    font-weight: 500;
+  }
+
+  .btn{
+    position: relative;
+  }
+
+  .navbar > a .btn::before {
+    content:'Sign in';
+    position: absolute;
+    color: var(--font-color-basic);
+    font-weight: 500;
+    top:  50%;
+    left: 0%;
+    transform: translate(-120%, -50%);
+  }
+
+  /* .dropdown-list {
+    display: none;
+  } */
+
 }
 
 

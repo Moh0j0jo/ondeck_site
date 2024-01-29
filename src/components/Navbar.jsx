@@ -1,150 +1,80 @@
-import { useState, useEffect } from 'react';
-import '../styles/Navbar.css'
-import SvgComponent from './svgComponent';
-import DropDownCompItemList from './DropdownItems';
+
+import React, {useState} from 'react';
+import { navmenuItems } from '../components/NavMenuItems';
+import { Link } from 'react-router-dom'
+import SvgComponent from './svgComponent'
+import Button from './Button';
+
+import NavItem from './NavItem';
 
 
 const Navbar = () => {
 
-  const [isActivedrpd, setDropDownisActive] = useState(false);
-  const [isActive, setIsActive] = useState(true);
-  
-  const navmenuItems = [
-    {
-      label: "Products",
-      dropdownlist: [
-        {
-          logo: 'Spense_Icon.svg',
-          title: 'Spense',
-          text: 'Spense is a landing page for writers. Great for practicing absolute positioning and flex layouts.',
-          link: '/spense'
-        },
-        {
-          logo: 'Fiber_Icon.svg',
-          title: 'Fiber Landing Page',
-          text: 'An online portfolio generator. Great to practice flex/grid layouts, and absolute positioning.',
-          link: '/fiber'
-        },
-        {
-          logo: 'Gradie_Icon.svg',
-          title: 'Gradie Sign Up page',
-          text: 'Gradie is a simple sign up page, great to practice centering layouts.',
-          link: '/gradie'
-        },
-      ]
-    },
-    {
-      label: "Challenges",
-      dropdownlist: []
-    },
-    {
-      label: "Resources",
-      dropdownlist: []
-    },
-    {
-      label: "Other Links",
-      dropdownlist: []
+  const [click, setClick] = useState(false)
+  const handleClick = () => {setClick(!click)}
+  const [dropdown, setDropdown] = useState(false)
+
+
+  const onMouseEnter = () => {
+    if (window.innerWidth < 800) {
+      setDropdown(false)
+    } else {
+      setDropdown(true)
     }
-  ]
-
-  useEffect(() => {
-    const handleMouseEnter = () => {
-      setDropDownisActive(true);
-    };
-
-    const handleMouseLeave = () => {
-      setDropDownisActive(false);
-    };
-
-    // Attach event listeners when the component mounts
-    const dropdownTrigger = document.getElementById('d0');
-    dropdownTrigger.addEventListener('mouseenter', handleMouseEnter);
-    dropdownTrigger.addEventListener('mouseleave', handleMouseLeave);
-
-    // Cleanup: Remove event listeners when the component unmounts
-    // return () => {
-    //   dropdownTrigger.removeEventListener('mouseenter', handleMouseEnter);
-    //   dropdownTrigger.removeEventListener('mouseleave', handleMouseLeave);
-    // };
-  }, [isActivedrpd]);
-
-
-  let dropdownClick = (e) => {
-    const elementName = e.currentTarget.id
-
-    if (elementName === 'd0') {
-      setDropDownisActive(!isActivedrpd)
+  }  
+  const onMouseLeave = () => {
+    if (window.innerWidth < 800) {
+      setDropdown(false)
+    } else {
+      setDropdown(false)
     }
-
   }
 
-  let menubtnClick = (e) => {
 
-    setIsActive(!isActive);
-
-  }
-
-  const NavMenuItem = ({ navmenuItems }) => {
-
-    let itemClassname = isActivedrpd ? 'product-dropdown active' : 'product-dropdown'
-    
-    return (
-
-      navmenuItems.map((navItem, index) => {
-
-        return (
-          <div className="nav-menu-item"
-            key={index}
-            id={'d' + index}
-            onClick={dropdownClick}
-          >
-            <h4>{navItem.label}</h4>
-           
-           
-              {(
-                navItem.dropdownlist.length > 0 &&
-                <DropDownCompItemList items={navItem.dropdownlist} className={itemClassname}
-                />
-              )}
-            
-
-
-          </div>
-        )
-
-      })
-    )
-  }
-
-  const Navmenu = () => {
-    return (
-      <div className={isActive ? "nav-menu" : "nav-menu active"}>
-        <NavMenuItem navmenuItems={navmenuItems} />
-        <button
-          className='closeBtn'
-          onClick={menubtnClick}
-        >
-        </button>
-      </div>
-    )
-
-  }
 
 
   return (
-    <div className="navbar">
-      <div className="logo">
-        <SvgComponent
-          width={100}
-          height={40}
+    <>
+      <nav className="navbar">
+        <Link to='/' className='navbar-logo'>
+          <SvgComponent 
+              width={200} 
+              height={70} 
           url={process.env.PUBLIC_URL + 'Logo.svg'}
-        />
-      </div>
-      <div className="burgermenu" onClick={menubtnClick}></div>
-      <Navmenu />
-      <button className='signInBtn'>Try for Free</button>
-    </div>
+          />
+        </Link>
+        <div className='menu-icon'
+          onClick={handleClick}>
+          <i className={click ? 'fas fa-times' : 'fas fa-bars'}></i>
+        </div>
+        <ul className={!click ? 'nav-items' : 'nav-items active'}>
+          
+          {
+            navmenuItems.map((navItem, index) => {
+              return (
+                <li 
+                  className='nav-item'
+                  id={'item' + index}
+                  key={index}
+                  onMouseEnter={onMouseEnter}
+                  onMouseLeave={onMouseLeave}
+                >
+                  <NavItem props={navItem} dropdown={dropdown}/>
+                </li>
+             
+                ) 
+            })
+          }
+
+        </ul>
+        <Button/>
+      </nav>
+
+    </>
+
+
   );
+
 };
 
 export default Navbar;
